@@ -1,0 +1,73 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card card-shadow mb-4 ">
+        <div class="card-header border-0">
+          <div class="custom-title-wrap bar-purple">
+            <div class="custom-title">
+              <h2>Add Facebook Posts Links</h2>  
+			  
+			  
+			  <button data-toggle="modal" data-target="#Create-link" class='btn btn-success' style='float:right;'>Add Link</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <table width="800px">
+				<thead>
+					<tr>
+						<th><h3>Facebook Post Links</h3></th>
+					</tr>
+					
+				</thead>
+				<tbody>
+					{% for p in link %}
+					<tr height='50px'>
+						<td>{{ p.link }}</td>
+					</tr>
+					
+					{% endfor %}
+				</tbody>
+			  </table>
+            </div>
+          </div>
+          <!---->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- create Item -->
+<div class="modal fade" id="Create-link" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Links</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation picker-form" method="POST" action="{% url 'createLink' %}">
+          {% csrf_token %}
+		  <div class="form-row">
+            <div class="col-md-12 mb-12 form-group">
+              <label for="validationCustom01">Link</label>
+              <input type="text" id="link" class="form-control formfields" name="link" required="">
+            </div>
+          </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="submit" class="btn btn-primary" value="POST">Add Link</button>
+		  </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+{% endblock %}
