@@ -1,1 +1,1 @@
-web: gunicorn FacebookBotDeploy.wsgi --log-file -
+web: gunicorn dl_project.wsgi --log-file -
